@@ -2,12 +2,15 @@
 shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
-      
-      
-      
-      
+
       radioButtons("data",label = h3("Choose the data"),
-                   choices = list("ISP_DUMP_COUNT","BILL_DATA_DUMP_COUNT","MAR_DUMP_COUNT","ATTENDANCE_DUMP_COUNT","GER_DUMP_COUNT","SMAIL_DUMP_COUNT"),
+                   choices = list("ISP_DUMP_COUNT",
+                                  "BILL_DATA_DUMP_COUNT",
+                                  "MAR_DUMP_COUNT",
+                                  "ATTENDANCE_DUMP_COUNT",
+                                  "GER_DUMP_COUNT",
+                                  "SMAIL_DUMP_COUNT",
+                                  "COMBINED_MODULE"),
                    selected ="ISP_DUMP_COUNT"),
       
       radioButtons("Time_zone_option", label = h3("Choose the time zone"),

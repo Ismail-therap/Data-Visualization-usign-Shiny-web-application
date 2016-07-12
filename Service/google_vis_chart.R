@@ -25,9 +25,9 @@ google_vis_line_chart <- function(Table_name_from_db, Table_type, inidate) {
   })
   
   ###### Creating gvis objects ################################################
-  single_day <- gvisLineChart(single_day_data, xvar = "Time", option = options_single_day)
-  seven_day <- gvisLineChart(seven_day_data, xvar = "Time", option = options_seven_day)
-  for_a_month <- gvisLineChart(a_month_data, xvar = "Time", option = options_month)
+  single_day <- gvisLineChart(single_day_data, xvar = "TIME", option = options_single_day)
+  seven_day <- gvisLineChart(seven_day_data, xvar = "TIME", option = options_seven_day)
+  for_a_month <- gvisLineChart(a_month_data, xvar = "TIME", option = options_month)
   
   ##### Merging the charts ###################################################
   merged.output.chart <- gvisMerge(single_day, seven_day, horizontal = FALSE)

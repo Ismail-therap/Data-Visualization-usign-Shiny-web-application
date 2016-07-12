@@ -11,7 +11,6 @@ shinyServer(
 
       google_vis_line_chart(Table_name_from_db = input$data, Table_type = input$Time_zone_option, inidate = input$date)
       
-
           })
    
     output$Linechart<- renderGvis({

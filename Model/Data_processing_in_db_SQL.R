@@ -29,17 +29,40 @@ data_from_database <- function(quary,connection){
 Data_from_SQL_data_base <- function(Table_name_from_db, Table_type, inidate, period){
   
   
-  est_tz <- paste("Select T_INTERVAL as Time,
-                  sum(CENTRAL) as Central,
-                  sum(MOUNTAIN) as Mountain,
-                  sum(EASTERN) as Eastern,
-                  sum(PACIFIC) as Pasific from")
+  if (Table_name_from_db == "COMBINED_MODULE"){
+    
+    Table_name_from_db = "COMBINED_MODULE"
+    
+    
+    est_tz <- paste("Select T_INTERVAL as Time,
+                    sum(CENTRAL) as Central,
+                    sum(MOUNTAIN) as Mountain,
+                    sum(EASTERN) as Eastern,
+                    sum(PACIFIC) as Pasific, sum(COMBINED_ALL_TZ_EASTERN) as Combined from")
+    
+    local_tz <-paste("Select T_INTERVAL as Time,
+                     sum(CENTRAL_LOCAL) as Central,
+                     sum(MOUNTAIN_LOCAL) as Mountain,
+                     sum(EASTERN_LOCAL) as Eastern,
+                     sum(PACIFIC_LOCAL) as Pasific, sum(COMBINED_ALL_TZ_LOCAL) as Combined from")
+    
+  }
   
-  local_tz <-paste("Select T_INTERVAL as Time,
-                   sum(CENTRAL_LOCAL) as Central,
-                   sum(MOUNTAIN_LOCAL) as Mountain,
-                   sum(EASTERN_LOCAL) as Eastern,
-                   sum(PACIFIC_LOCAL) as Pasific from")
+  else {
+    
+    est_tz <- paste("Select T_INTERVAL as Time,
+                    sum(CENTRAL) as Central,
+                    sum(MOUNTAIN) as Mountain,
+                    sum(EASTERN) as Eastern,
+                    sum(PACIFIC) as Pasific from")
+    
+    local_tz <-paste("Select T_INTERVAL as Time,
+                     sum(CENTRAL_LOCAL) as Central,
+                     sum(MOUNTAIN_LOCAL) as Mountain,
+                     sum(EASTERN_LOCAL) as Eastern,
+                     sum(PACIFIC_LOCAL) as Pasific from")
+  }
+  
   
   
   inidate <-as.Date(inidate,"%Y-%m-%d")
@@ -99,19 +122,14 @@ Data_from_SQL_data_base <- function(Table_name_from_db, Table_type, inidate, per
     
   }
   
-  names(dat) <- c("Time","Central","Mountain","Eastern","Pasific")
   return(dat)
-
-}
   
+}
+
 
 # loc_mar_dat <- Data_from_SQL_data_base (Table_name_from_db="MAR_DUMP_COUNT",Table_type = "Local",inidate = "2016-03-03",period=1)
-# 
 # est_mar_dat <- Data_from_SQL_data_base (Table_name_from_db="MAR_DUMP_COUNT",Table_type = "Eastern",inidate = "2016-03-03",period=1)
-# 
-#   
 # head(loc_mar_dat)
-# 
 # head(est_mar_dat)
 
 
